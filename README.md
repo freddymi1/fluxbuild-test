@@ -16,19 +16,16 @@ inclure des tests unitaires..
 - Node v16.20.0
 - Git
 
-## LANCEMENT DU PROJET
-
-## via docker
-*1-* Telecharger le projet ici ou le cloner avec la commande suivante
+*1-* Ouvrir un terminal ou un cmd télécharger le projet ici ou le cloner avec la commande suivante
 
     git clone https://github.com/freddymi1/fluxbuild-test.git
 
-*2-* Ouvrir un terminal ou un cmd dans le repertoire du projet et lancer la commande suivante:
+*2-* Après, naviguer dans le repertoire du projet et lancer la commande suivante:
 
     
     npm install
     
-
+## LANCEMENT DU PROJET
 ## via npm
 
 Lancer le script via le serveur local
