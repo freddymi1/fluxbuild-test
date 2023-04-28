@@ -16,6 +16,8 @@ inclure des tests unitaires..
 - Node v16.20.0
 - Git
 
+## DEMARRAGE DU PROJET
+
 *1-* Ouvrir un terminal ou un cmd télécharger le projet ici ou le cloner avec la commande suivante
 
     git clone https://github.com/freddymi1/fluxbuild-test.git
