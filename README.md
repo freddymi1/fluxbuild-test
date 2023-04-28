@@ -16,6 +16,12 @@ inclure des tests unitaires..
 - Node v16.20.0
 - Git
 
+## Techno
+
+- React
+- Vite
+- Typescript
+
 ## DEMARRAGE DU PROJET
 
 *1-* Ouvrir un terminal ou un cmd télécharger le projet ici ou le cloner avec la commande suivante
