@@ -1,3 +1,8 @@
+/**
+ * @author Freddy Michel <michelfreddy1992@gmail.com>
+ * @description Homepage component
+ */
+
 import React, { ChangeEvent, Fragment, useEffect, useState } from 'react';
 import styles from './HomePage.module.css';
 import TestService from '../../services/serviceApi';
@@ -5,6 +10,7 @@ import { useQuery } from 'react-query';
 
 import { HomeComponent } from '../../components/HomeComponent';
 import { NavbarLayout } from '../NavbarLayout';
+import { DataInterface } from '../../utils/interface';
 
 export type HomePageProps = {
 }
@@ -13,11 +19,15 @@ const HomePage: React.FC<HomePageProps> = () => {
 	
 	const [searchInput, setSearchInput] = useState<string>("");
 	
-	const [getResult, setGetResult] = useState<any>(null);
+	const [getResult, setGetResult] = useState<DataInterface[] | any>(null);
 
 	const [isSearch, setIsSearch] = useState<boolean>(false);
+
+	//Find all data
 	
-	const {isLoading, data} = useQuery('list', TestService.findAll);
+	const {isLoading, error, data} = useQuery('list', TestService.findAll);
+
+	// Filter data by name
 
 	const { isLoading: isSearchingItem, refetch: findListByName } = useQuery("search",
 	() => {
@@ -37,8 +47,7 @@ const HomePage: React.FC<HomePageProps> = () => {
 		onError: (err: any) => {
 			setGetResult(err.response?.data || err);
 		},
-	}
-	);
+	});
 
 	useEffect(() => {
 
@@ -53,13 +62,21 @@ const HomePage: React.FC<HomePageProps> = () => {
 		}
 	}, [searchInput]);
 
-
+	/**
+	 * @author Freddy Michel <michelfreddy1992@gmail.com>
+	 * @description start search app on change input search value 
+	 * @param e 
+	 */
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
 		setSearchInput(e.target.value);
 		setIsSearch(true);
 		
 	}
+
+	/**
+	 * @deprecated if all data is loading
+	 */
 
 	if(isLoading) {
 		return (
@@ -75,6 +92,8 @@ const HomePage: React.FC<HomePageProps> = () => {
 			<NavbarLayout/>
 			<div className={`container ${styles.ContentPage}`}>
 				<div className={styles.NavSearch}>
+
+					{/* if isSearch and searchInput is not empty, show this section, else, show totals section */}
 					{isSearch && searchInput !== "" ? (
 
 						<p className={`${styles.NbrRes}`}>Résultats ({getResult && getResult.data.length ? getResult.data.length : 0})</p>
@@ -82,14 +101,15 @@ const HomePage: React.FC<HomePageProps> = () => {
 					):(
 						<p className={`${styles.NbrRes}`}>Totals ({data && data.data.length ? data.data.length : 0})</p>
 					)}
+
+					{/* Input search */}
 					<div className='d-flex'>
 						<input type="text" placeholder={`${isSearchingItem ? 'Search...' : ''}`} className='form-control w-100' value={searchInput} onChange={(e) => handleSearch(e)} />
 						{/* <button className='btn btn-light' onClick={(e: any)=>handleSearch(e)}>Search</button> */}
 					</div>
 				</div>
-
 				
-
+				{/* When loading data on search */}
 				{
 					isSearchingItem && (
 						<div className={`container ${styles.HomePage}`}>
@@ -97,6 +117,8 @@ const HomePage: React.FC<HomePageProps> = () => {
 						</div>
 					)
 				}
+
+				{/* If search is null or empty */}
 
 				<div>
 					{
@@ -107,7 +129,8 @@ const HomePage: React.FC<HomePageProps> = () => {
 						)
 					}
 				</div>
-
+				
+				{/* Call the component who the data is shwoing */}
 				<HomeComponent data={isSearch && searchInput !== "" ? getResult : data}/>
 				
 			</div>

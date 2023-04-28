@@ -1,13 +1,20 @@
 import React from 'react';
 import styles from './HomeComponent.module.css';
+import { DataInterface } from '../../utils/interface';
 
 export type HomeComponentProps = {
-	data: any;
+	data: DataInterface | any;
 }
 
 const HomeComponent: React.FC<HomeComponentProps> = ({
 	data
 }) => {
+
+	/**
+	 * @author Freddy Michel <michelfreddy1992@gmail.com>
+	 * @description naviguer vers la detail du card s'il y en a
+	 * @param link 
+	 */
 
 	const goToWebPage = (link: string) => {
 		window.location.href = `${link}`;

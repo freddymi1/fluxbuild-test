@@ -1,6 +1,10 @@
+/**
+ * @author Freddy Michel <michelfreddy1992@gmail.com>
+ * @description navbar component
+ */
+
 import React from 'react';
-import styles from './NavbarLayout.module.css';
-import { Button, Container, Form, Nav, NavDropdown, Navbar } from 'react-bootstrap';
+import { Container, Navbar } from 'react-bootstrap';
 
 export type NavbarLayoutProps = {
 }
