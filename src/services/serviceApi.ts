@@ -15,7 +15,8 @@ const apiUrl = "http://universities.hipolabs.com/";
 const findAll = async () => {
     const response = await axios.get<DataInterface[]>(`${apiUrl}search`, {
         headers: {
-            "Content-type": "application/json"
+            "Content-type": "application/json",
+            "Accept": "application/json"
         }
     });
 
@@ -35,7 +36,8 @@ const findAll = async () => {
 const searchByName = async (name: string) => {
     const response = await axios.get<any[]>(`${apiUrl}search?name=${name}`, {
         headers: {
-            "Content-type": "application/json"
+            "Content-type": "application/json",
+            "Accept": "application/json"
         }
     });
 
