@@ -13,12 +13,7 @@ const apiUrl = "http://universities.hipolabs.com/";
  * @returns 
  */
 const findAll = async () => {
-    const response = await axios.get<DataInterface[]>(`${apiUrl}search`, {
-        headers: {
-            "Content-type": "application/json",
-            "Accept": "application/json"
-        }
-    });
+    const response = await axios.get<DataInterface[]>(`${apiUrl}search`);
 
     return response;
 }
@@ -34,12 +29,7 @@ const findAll = async () => {
  */
 
 const searchByName = async (name: string) => {
-    const response = await axios.get<any[]>(`${apiUrl}search?name=${name}`, {
-        headers: {
-            "Content-type": "application/json",
-            "Accept": "application/json"
-        }
-    });
+    const response = await axios.get<any[]>(`${apiUrl}search?name=${name}`);
 
     return response;
 }
