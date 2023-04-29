@@ -97,11 +97,12 @@ const HomePage: React.FC<HomePageProps> = () => {
 			</div>
 		)
 	}
+
 		
 	
 	return (
 		<Fragment>
-			<NavbarLayout/>
+			<NavbarLayout isSearchingItem={isSearchingItem} searchInput={searchInput} handleSearch={handleSearch} />
 			<div className={`container ${styles.ContentPage}`}>
 				<div className={styles.NavSearch}>
 
@@ -116,7 +117,7 @@ const HomePage: React.FC<HomePageProps> = () => {
 
 					{/* Input search */}
 					<div className='d-flex'>
-						<input type="text" placeholder={`${isSearchingItem ? 'Search...' : ''}`} className='form-control w-100' value={searchInput} onChange={(e) => handleSearch(e)} />
+						{/* <input type="text" placeholder={`${isSearchingItem ? 'Search...' : ''}`} className='form-control w-100' value={searchInput} onChange={(e) => handleSearch(e)} /> */}
 						{/* <button className='btn btn-light' onClick={(e: any)=>handleSearch(e)}>Search</button> */}
 					</div>
 				</div>
@@ -143,7 +144,7 @@ const HomePage: React.FC<HomePageProps> = () => {
 				</div>
 				
 				{/* Call the component who the data is shwoing */}
-				<HomeComponent data={isSearch && searchInput !== "" ? getResult : data}/>
+				<HomeComponent data={isSearch && searchInput !== "" ? getResult && getResult.data : data?.data.slice(0, 100)}/>
 				
 			</div>
 		</Fragment>

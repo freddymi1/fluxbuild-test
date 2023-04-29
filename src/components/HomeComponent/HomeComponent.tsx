@@ -1,6 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import styles from './HomeComponent.module.css';
 import { DataInterface } from '../../utils/interface';
+import { Modal } from 'react-bootstrap';
+
+import { AiFillEye } from 'react-icons/ai';
 
 export type HomeComponentProps = {
 	data: DataInterface | any;
@@ -10,21 +13,35 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 	data
 }) => {
 
+	//state for modal, open or note
+	const [show, setShow] = useState<boolean>(false);
+
+	// state for title of modal
+	const [title, setTitle] = useState<string>("");
+
+	// state for stocking data when open modal
+	const [items, setItems] = useState<any[]>([]);
+
+	// close modal
+	const handleClose = () => setShow(false);
+
 	/**
 	 * @author Freddy Michel <michelfreddy1992@gmail.com>
-	 * @description naviguer vers la detail du card s'il y en a
-	 * @param link 
+	 * @description open modal Detail page web
+	 * @param data 
 	 */
 
-	const goToWebPage = (link: string) => {
-		window.location.href = `${link}`;
-	}
+	const handleShow = (data: any, title: string) => {
+        setShow(true);
+		setItems(data);
+		setTitle(title);
+    }
 
 	return (
 		<div className={styles.HomeComponent}>
 			<div data-testid="list-wrapper" className="row">
 				{
-					data && data.data.map((item: any, index: number) => (
+					data && data.map((item: any, index: number) => (
 						<div key={index} data-testid={`item-${index}`} className="col-12 col-sm-12 col-md-4  my-3 text-center">
 							<div className={`card ${styles.Link}`}>
 								
@@ -35,34 +52,38 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 								</div>
 								
 								<div className="card-body">
-									<p>{item.name}</p>
-									<p>
-										<span className='text-primary'>
+
+									
+									<p className='m-0 w-100 d-flex justify-content-start'>
+										Domaines: {item.domains[0]}&nbsp;
+										
 										{
-											item.domains.map((data: any) => (
-												<Fragment key={data}>
-													<strong className='ml-2' >
-														{data}
-													</strong><br />
-												</Fragment>
-											))
+											item.domains.length > 1 && (
+												<i onClick={() =>handleShow(item.domains, 'domaines')} className="btn btn-success btn-sm m-0">
+													<AiFillEye/>
+												</i>
+											)
 
 										}
-										</span><br />
+										<br />
 									</p>
 									
+									<p className='m-0 d-flex justify-content-start'>
+										Web: {item.web_pages[0]} &nbsp;
+										{item.web_pages.length > 1 &&  (
+											<>
+												 <i onClick={() =>handleShow(item.web_pages, 'page web')} className='btn btn-primary btn-sm m-0'>
+												 	<AiFillEye/>
+												 </i>
+											</>
+										)}
+									
+									</p>									
 									
 								</div>
 
-								<div onClick={() =>goToWebPage(item.web_pages[0])} className="card-footer btn btn-primary">
-									{
-										item.web_pages.map((data: any) => (
-											<p className='m-0' key={data}>
-												{data}
-											</p>
-										))
-
-									}
+								<div className="card-footer btn btn-primary">
+									<p className='m-0'>{item.name}</p>
 								</div>
 								
 							</div>
@@ -70,6 +91,37 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 					))
 				}
 			</div>
+
+			<Modal
+                size="sm"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                show={show}
+                onHide={handleClose}
+            >
+                <div>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Liste du {title} </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+					{
+						items && items.map((data: any) => (
+							<Fragment  key={data}>
+								<a className='m-0'>
+									{data}
+								</a><br />
+							</Fragment>
+						))
+
+					}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button  type="button" onClick={handleClose} className="btn btn-danger">
+                            Fermer
+                        </button>
+                    </Modal.Footer>
+                </div>
+          </Modal>
 		</div>
 	);
 };
