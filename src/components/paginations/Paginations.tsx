@@ -4,6 +4,7 @@ interface Props {
     paginate: any,
     postPerPage: any
 }
+
 export const Paginations: React.FC<Props> = ({totalPages, paginate, postPerPage}) =>{
     const numberPage = []
 

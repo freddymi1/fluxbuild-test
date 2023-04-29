@@ -4,13 +4,16 @@ import { DataInterface } from '../../utils/interface';
 import { Modal } from 'react-bootstrap';
 
 import { AiFillEye } from 'react-icons/ai';
+import { PaginationControl } from 'react-bootstrap-pagination-control';
 
 export type HomeComponentProps = {
 	data: DataInterface | any;
+	numberPerPage: number,
 }
 
 const HomeComponent: React.FC<HomeComponentProps> = ({
-	data
+	data,
+	numberPerPage
 }) => {
 
 	//state for modal, open or note
@@ -21,6 +24,20 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 
 	// state for stocking data when open modal
 	const [items, setItems] = useState<any[]>([]);
+
+	const [currentPage, setCurrentPage] = useState<any>(1)
+    
+
+	/**
+     * Pagination
+     */
+    const indexOfLastPage = currentPage * numberPerPage;
+    const IndexOfFirstPage = indexOfLastPage - numberPerPage;
+    const currentItems: any = data && data.slice(IndexOfFirstPage, indexOfLastPage);
+
+	const paginate = (numberPage: any)=> {
+        setCurrentPage(numberPage)
+    }
 
 	// close modal
 	const handleClose = () => setShow(false);
@@ -42,7 +59,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 		<div className={styles.HomeComponent}>
 			<div data-testid="list-wrapper" className="row">
 				{
-					data && data.map((item: any, index: number) => (
+					currentItems && currentItems.map((item: any, index: number) => (
 						<div key={index} data-testid={`item-${index}`} className="col-12 col-sm-12 col-md-4  my-3 text-center">
 							<div className={`card ${styles.Link}`}>
 								
@@ -122,7 +139,19 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
                         </button>
                     </Modal.Footer>
                 </div>
-          </Modal>
+          	</Modal>
+		  	<div className="card-footer mt-5">
+				<PaginationControl
+					page={currentPage}
+					between={4}
+					total={data && data.length}
+					limit={20}
+					changePage={(page) => {
+						setCurrentPage(page)
+					}}
+					ellipsis={1}
+				/>
+			</div>
 		</div>
 	);
 };

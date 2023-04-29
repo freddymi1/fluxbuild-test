@@ -27,6 +27,8 @@ const HomePage: React.FC<HomePageProps> = () => {
 
 	const [isSearch, setIsSearch] = useState<boolean>(false);
 
+	const [numberPerPage, setNumberPerPage] = useState<any>(100);
+
 	//Find all data
 	
 	const {isLoading, error, data} = useQuery('list', TestService.findAll);
@@ -118,9 +120,16 @@ const HomePage: React.FC<HomePageProps> = () => {
 					)}
 
 					{/* Input search */}
-					<div className='d-flex'>
-						{/* <input type="text" placeholder={`${isSearchingItem ? 'Search...' : ''}`} className='form-control w-100' value={searchInput} onChange={(e) => handleSearch(e)} /> */}
-						{/* <button className='btn btn-light' onClick={(e: any)=>handleSearch(e)}>Search</button> */}
+					<div className='d-flex w-50 justify-content-end'>
+						<label className='mt-2' htmlFor="curent">Afficher par</label> &nbsp; &nbsp;
+						<select name="" value={numberPerPage} onChange={(e)=> setNumberPerPage(e.target.value)} className='form-control input-sm w-auto' id="">
+							<option value="50">50</option>
+							<option value="100">100</option>
+							<option value="200">200</option>
+							<option value="300">300</option>
+							<option value="400">400</option>
+							<option value="500">500</option>
+						</select>
 					</div>
 				</div>
 				
@@ -146,7 +155,7 @@ const HomePage: React.FC<HomePageProps> = () => {
 				</div>
 				
 				{/* Call the component who the data is shwoing */}
-				<HomeComponent data={isSearch && searchInput !== "" ? getResult && getResult.data : data?.data.slice(0, 100)}/>
+				<HomeComponent numberPerPage={numberPerPage} data={isSearch && searchInput !== "" ? getResult && getResult.data : data?.data}/>
 				
 			</div>
 		</Fragment>
