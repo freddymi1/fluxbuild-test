@@ -37,6 +37,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 		setTitle(title);
     }
 
+
 	return (
 		<div className={styles.HomeComponent}>
 			<div data-testid="list-wrapper" className="row">

@@ -90,6 +90,10 @@ const HomePage: React.FC<HomePageProps> = () => {
 		)
 	}
 
+	/**
+	 * @deprecated if fetch data is error
+	 */
+
 	if(error) {
 		return(
 			<div data-testid="data-error" className={`container ${styles.HomePage}`}>
@@ -97,8 +101,6 @@ const HomePage: React.FC<HomePageProps> = () => {
 			</div>
 		)
 	}
-
-		
 	
 	return (
 		<Fragment>
