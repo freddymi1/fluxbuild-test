@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styles from './HomeComponent.module.css';
 import { DataInterface } from '../../utils/interface';
 
@@ -22,10 +22,10 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 
 	return (
 		<div className={styles.HomeComponent}>
-			<div className="row">
+			<div data-testid="list-wrapper" className="row">
 				{
 					data && data.data.map((item: any, index: number) => (
-						<div key={index} className="col-12 col-sm-12 col-md-4  my-3 text-center">
+						<div key={index} data-testid={`item-${index}`} className="col-12 col-sm-12 col-md-4  my-3 text-center">
 							<div className={`card ${styles.Link}`}>
 								
 								<div className="card-header d-flex justify-content-between">
@@ -37,18 +37,18 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 								<div className="card-body">
 									<p>{item.name}</p>
 									<p>
-										<span>Domaine:</span> 
-										&nbsp;
 										<span className='text-primary'>
 										{
 											item.domains.map((data: any) => (
-												<strong className='ml-2' key={data}>
-													{data}
-												</strong>
+												<Fragment key={data}>
+													<strong className='ml-2' >
+														{data}
+													</strong><br />
+												</Fragment>
 											))
 
 										}
-										</span>
+										</span><br />
 									</p>
 									
 									

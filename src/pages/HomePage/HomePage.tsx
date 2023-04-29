@@ -4,8 +4,11 @@
  */
 
 import React, { ChangeEvent, Fragment, useEffect, useState } from 'react';
+
 import styles from './HomePage.module.css';
+
 import TestService from '../../services/serviceApi';
+
 import { useQuery } from 'react-query';
 
 import { HomeComponent } from '../../components/HomeComponent';
@@ -14,6 +17,7 @@ import { DataInterface } from '../../utils/interface';
 
 export type HomePageProps = {
 }
+
 
 const HomePage: React.FC<HomePageProps> = () => {
 	
@@ -80,8 +84,16 @@ const HomePage: React.FC<HomePageProps> = () => {
 
 	if(isLoading) {
 		return (
-			<div className={`container ${styles.HomePage}`}>
+			<div data-testid="data-loading" className={`container ${styles.HomePage}`}>
 				<h2>Chargement...</h2>
+			</div>
+		)
+	}
+
+	if(error) {
+		return(
+			<div data-testid="data-error" className={`container ${styles.HomePage}`}>
+				<h2>Erreur de chargement des données...</h2>
 			</div>
 		)
 	}
@@ -96,10 +108,10 @@ const HomePage: React.FC<HomePageProps> = () => {
 					{/* if isSearch and searchInput is not empty, show this section, else, show totals section */}
 					{isSearch && searchInput !== "" ? (
 
-						<p className={`${styles.NbrRes}`}>Résultats ({getResult && getResult.data.length ? getResult.data.length : 0})</p>
+						<p data-testid="data-number"  className={`${styles.NbrRes}`}>Résultats ({getResult && getResult.data.length ? getResult.data.length : 0})</p>
 					
 					):(
-						<p className={`${styles.NbrRes}`}>Totals ({data && data.data.length ? data.data.length : 0})</p>
+						<p data-testid="search-number"  className={`${styles.NbrRes}`}>Totals ({data && data.data.length ? data.data.length : 0})</p>
 					)}
 
 					{/* Input search */}
