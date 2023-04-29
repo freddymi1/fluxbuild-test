@@ -35,10 +35,6 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
     const IndexOfFirstPage = indexOfLastPage - numberPerPage;
     const currentItems: any = data && data.slice(IndexOfFirstPage, indexOfLastPage);
 
-	const paginate = (numberPage: any)=> {
-        setCurrentPage(numberPage)
-    }
-
 	// close modal
 	const handleClose = () => setShow(false);
 
@@ -125,7 +121,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 					{
 						items && items.map((data: any) => (
 							<Fragment  key={data}>
-								<a className='m-0'>
+								<a href={title === 'page web' ? data : '#'} className='m-0'>
 									{data}
 								</a><br />
 							</Fragment>
