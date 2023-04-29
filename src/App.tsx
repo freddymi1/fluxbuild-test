@@ -7,12 +7,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { HomePage } from './pages/HomePage';
 import { ToastContainer, toast } from 'react-toastify';
+import { statusConnextion } from './utils/connextionStatus';
 
 function App() {
 
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [error, setError] = useState<boolean | any>(false);
-  console.log("online status", isOnline)
+  console.log("online status", isOnline);
+  
+  statusConnextion(isOnline);
 
   useEffect(() => {
     // Update network status
@@ -34,11 +37,7 @@ function App() {
     
   }, [isOnline]);
 
-  if(isOnline) {
-    toast.success("Connexion internet retablit");
-  }else{
-    toast.error("Votre connexion internet a été coupée, veuillez le verifier SVP!");
-  }
+  
 
   return (
       <>
