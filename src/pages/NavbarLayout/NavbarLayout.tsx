@@ -27,7 +27,7 @@ const NavbarLayout: React.FC<NavbarLayoutProps> = ({
 					<Form className="d-flex">
 						<Form.Control
 						type="search"
-						placeholder={`Search...${isSearchingItem ? 'Search...' : ''}`}
+						placeholder={`Rechercher...${isSearchingItem ? 'Search...' : ''}`}
 						className="me-2"
 						aria-label="Search"
 						value={searchInput} 
