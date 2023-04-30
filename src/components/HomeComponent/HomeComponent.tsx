@@ -50,6 +50,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 		setTitle(title);
     }
 
+	console.log("TOTAL", data && data.length)
 
 	return (
 		<div className={styles.HomeComponent}>
@@ -141,7 +142,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 					page={currentPage}
 					between={4}
 					total={data && data.length}
-					limit={20}
+					limit={numberPerPage}
 					changePage={(page) => {
 						setCurrentPage(page)
 					}}
