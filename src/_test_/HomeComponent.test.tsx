@@ -33,7 +33,7 @@ describe("HomeComponent render", () => {
         FakeData.mockImplementation(() => ({
           data:  MockData
         }));
-        render(<HomeComponent data={MockData} />, { wrapper });
+        render(<HomeComponent numberPerPage={10} data={MockData} />, { wrapper });
         expect(screen.getByTestId("list-wrapper"))?.toBeInTheDocument();
         expect(screen.getByTestId("item-1")).toBeInTheDocument();
     });
