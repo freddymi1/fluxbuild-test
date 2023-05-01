@@ -16,3 +16,9 @@ export const statusConnextion = (status: boolean) => {
 
     return status;
 }
+
+export const dataNotLoaded = (error: any) => {
+    if(error) {
+        toast.error("Erreur lors de la chargement des données..., Veuillez verifier votre connexion");
+    }
+} 

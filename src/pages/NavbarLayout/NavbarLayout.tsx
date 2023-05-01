@@ -26,11 +26,14 @@ const NavbarLayout: React.FC<NavbarLayoutProps> = ({
 					<Nav className="me-auto my-2 my-lg-0"></Nav>
 					<Form className="d-flex">
 						<Form.Control
+						data-testid="search-input"
 						type="search"
+						role='search'
 						placeholder={`Rechercher...${isSearchingItem ? 'Search...' : ''}`}
 						className="me-2"
 						aria-label="Search"
 						value={searchInput} 
+						name='search'
 						onChange={(e) => handleSearch(e)}
 						/>
 					</Form>

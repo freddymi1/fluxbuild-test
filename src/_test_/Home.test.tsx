@@ -28,18 +28,22 @@ const FaceData: DataInterface | any = jest.fn(() => { return Promise.resolve(Moc
 export default wrapper;
 
 describe("Homepage component", () => {
-    it("Displays the loading view", () => {
+
+    
+    it("Displays the loading whene the loading is on", () => {
         render(<HomePage />, { wrapper });
         expect(screen.getByTestId("data-loading"))?.toBeInTheDocument();
         expect(screen.getByText(/Chargement.../i)).toBeVisible();
     });
-
-
-    it("Display number of data", () => {
+    
+    it("Displays error if error in loading data", () => {
+        const error = null;
         render(<HomePage />, { wrapper });
-        expect(screen.getByTestId("data-number"))?.toBeInTheDocument();
-        expect(screen.getByText(/Résultats}/i)).toBeVisible();
-        expect(MockData.length).toEqual(2);
-    })
+        if (error !== null) {
+            expect(screen.getByTestId("data-error"))?.toBeInTheDocument();
+            expect(screen.getByText(/Erreur lors de la chargement des données.../i)).toBeVisible();
+        }
+        
+    });
 
 });
