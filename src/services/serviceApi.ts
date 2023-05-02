@@ -24,9 +24,6 @@ const findAll = async () => {
  * @returns 
  */
 
-/**
- * 
- */
 
 const searchByName = async (name: string) => {
     const response = await axios.get<any[]>(`${apiUrl}search?name=${name}`);
