@@ -47,10 +47,16 @@ Dans le répertoire du projet, vous pouvez exécuter :
 Lance l'application en mode développement.
 Ouvrez [http://127.0.0.1:5173/](http://127.0.0.1:5173/) pour la visualiser dans le navigateur.
 
-La page se rechargera si vous effectuez des modifications.
-Vous verrez également toutes les erreurs de lint dans la console.
 
-    npm test
+# REMARQUE
+Lors de la recherche, 
+il est important de noter qu'il faut attendre un peut lors qu'on tape dans le champs de recherche.
+Cela a pour but d laisser le donnée rechercher se chargée lors de la premier entrer sur le champs
+
+La page se rechargera si vous effectuez des modifications.
+Pour lancer le test, effectuer le commande suivat dans le projet.
+
+    npm run test
 
 Lance le programme d'exécution des tests en mode de surveillance interactive.
 Consultez la section sur [l'exécution des tests] (https://facebook.github.io/create-react-app/docs/running-tests) pour plus d'informations.
