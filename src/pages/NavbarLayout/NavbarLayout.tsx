@@ -17,6 +17,7 @@ const NavbarLayout: React.FC<NavbarLayoutProps> = ({
 	searchInput,
 	isSearchingItem
 }) => {
+
 	return (
 		<Navbar bg="light" fixed='top' expand="lg" style={{height: "auto", padding: "1.5rem 0"}}>
 			<Container className='d-flex'>

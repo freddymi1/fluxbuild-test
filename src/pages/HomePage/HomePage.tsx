@@ -126,7 +126,7 @@ const HomePage: React.FC<HomePageProps> = () => {
 					{/* getResult && getResult.data.length ? getResult.data */}
 					{isSearch && searchInput !== "" ? (
 
-						<p data-testid="data-number" className={`${styles.NbrRes}`}>Résultats ({dataFilter && dataFilter.length})</p>
+						<p data-testid="data-number" className={`${styles.NbrRes}`}>Résultats ({getResult && getResult.data.length ? getResult.data.length : 0})</p>
 					
 					):(
 						<p data-testid="search-number"  className={`${styles.NbrRes}`}>Totals ({data && data.data.length ? data.data.length : 0})</p>
@@ -169,7 +169,7 @@ const HomePage: React.FC<HomePageProps> = () => {
 				
 				{/* Call the component who the data is shwoing */}
 				{/* isSearch && searchInput !== "" ? getResult && getResult.data : data?.data */}
-				<HomeComponent numberPerPage={numberPerPage} data={dataFilter}/>
+				<HomeComponent numberPerPage={numberPerPage} data={isSearch && searchInput !== "" ? getResult && getResult.data : data?.data}/>
 				
 			</div>
 		</Fragment>
