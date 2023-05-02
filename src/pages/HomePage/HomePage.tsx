@@ -112,9 +112,16 @@ const HomePage: React.FC<HomePageProps> = () => {
 		)
 	}
 
-	const dataFilter = data && data.data.filter((data: any) => {
-        return (data && data.name.toLowerCase().includes(searchInput.toLowerCase()))
-    })
+	/**
+	 * On le de commante lors qu'on va faire de live search instantanée sans lancer de requete search
+	 * pour se faire => remplacer [isSearch && searchInput !== "" ? getResult && getResult.data : data?.data]
+	 * sur la ligne ou on appel le composant HomeComponents
+	 * par => dataFilter
+	 */
+
+	// const dataFilter = data && data.data.filter((data: any) => {
+    //     return (data && data.name.toLowerCase().includes(searchInput.toLowerCase()))
+    // })
 	
 	return (
 		<Fragment>
