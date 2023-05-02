@@ -6,7 +6,7 @@
 import axios from "axios";
 import { DataInterface } from "../utils/interface";
 
-const apiUrl = "http://universities.hipolabs.com/";
+const apiUrl: string = "http://universities.hipolabs.com/";
 
 /**
  * @description fetch all data
