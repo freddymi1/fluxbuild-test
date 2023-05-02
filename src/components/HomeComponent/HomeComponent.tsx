@@ -57,7 +57,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
 			<div data-testid="list-wrapper" className="row">
 				{
 					currentItems && currentItems.map((item: any, index: number) => (
-						<div key={index} data-testid={`item-${index}`} className="col-12 col-sm-12 col-md-4  my-3 text-center">
+						<div key={index} data-testid={`item-${index}`} className="col-12 col-sm-12 col-md-12 col-lg-4  my-3 text-center">
 							<div className={`card ${styles.Link}`}>
 								
 								<div className="card-header d-flex justify-content-between">
